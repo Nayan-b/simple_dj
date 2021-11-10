@@ -1,0 +1,66 @@
+<!-- basic html header -->
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Project {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+
+</head>
+
+<body>
+    <!-- header menu using bootstrap -->
+    {% block headermenu %}
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'basic' %}">Home</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'dictionary' %}">Dictionary</a></li>
+                <li><a href="{% url 'covid' %}">Covid Report</a></li>
+                <li><a href="{% url 'nepse' %}">Nepse</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+    </nav>
+    <!-- end of header menu -->
+    {% endblock %}
+
+    <!-- main content -->
+    {% block maincontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Simple Project</h1>
+                <p>
+                    <a href=" {% url 'covid' %} ">Covid Report</a>
+                </p>
+                <p>
+                    <a href=" {% url 'dictionary' %} ">Dictionary</a>
+                </p>
+                <p>
+                    <a href="{% url 'nepse' %}">Nepse</a>
+                </p>
+                <p>
+                    <a href="{% url 'contact' %}">Contact</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

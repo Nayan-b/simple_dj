@@ -1,0 +1,55 @@
+{% extends 'basic.html' %}
+
+{% block title %} Nepse {% endblock %}
+
+{% block maincontent %}
+<!-- create a dropdown form for the different countries -->
+<form method="GET" >
+    <select name="stock">
+        <option value="">Select a stock name</option>
+        {% for name in company_name %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Submit">
+</form>
+
+<table class='table'>
+    <tr>
+        <th scope='col'>Company Name</th>
+        <th scope='col'>Stock Price</th>
+        <th scope='col'>Price Change</th>
+        <th scope='col'>Max Price</th>
+        <th scope='col'>Min Price</th>
+
+        <th scope='col'>Stock Volume</th>
+
+
+    </tr>
+    {% if isCompany %}
+    <tr>
+        <td scope='row'>{{ data.companyName }}</td>
+        <td>{{ data.closingPrice }}</td>
+        <td>{{ data.difference }}</td>
+        <td>{{ data.maxPrice }}</td>
+        <td>{{ data.minPrice }}</td>
+        <td>{{ data.tradedShares }}</td>
+
+    </tr>
+    {% else %}
+
+    {% for company in data %}
+    <tr>
+        <td>{{ company.companyName }}</td>
+        <td>{{ company.closingPrice }}</td>
+        <td>{{ company.difference }}</td>
+        <td>{{ company.maxPrice }}</td>
+        <td>{{ company.minPrice }}</td>
+        <td>{{ company.tradedShares }}</td>
+    </tr>
+
+    {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}
